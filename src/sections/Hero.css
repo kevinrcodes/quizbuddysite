@@ -1,0 +1,22 @@
+.hero-section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, rgb(244, 244, 245), rgb(148, 79, 74));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-section .lead {
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+} 
