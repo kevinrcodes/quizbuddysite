@@ -1,5 +1,7 @@
 import { Container } from 'react-bootstrap'
 import SiteMenuBar from './components/SiteMenuBar'
+import Hero from './sections/Hero'
+import Features from './sections/Features'
 import './App.css'
 
 function App() {
@@ -9,16 +11,11 @@ function App() {
 
       {/* Add some padding to account for fixed navbar */}
       <div style={{ paddingTop: '56px' }}>
-        <Container>
-          <section id="hero" className="py-5">
-            <h1>Your SaaS Solution</h1>
-            <p className="lead">A powerful tool that solves your problem</p>
-          </section>
+        <Hero />
 
-          <section id="how-it-works" className="py-5">
-            <h2>How It Works</h2>
-            <p>Simple steps to get started with our solution</p>
-          </section>
+        <Features />
+
+        <Container>
 
           <section id="demo" className="py-5">
             <h2>See It In Action</h2>

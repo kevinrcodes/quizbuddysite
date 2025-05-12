@@ -57,7 +57,7 @@ function SiteMenuBar() {
               className="download-btn"
               href="#pricing"
             >
-              Get Started
+              Download
             </Button>
             <a href="#how-it-works">How It Works</a>
             <a href="#pricing">Pricing</a>
@@ -75,7 +75,7 @@ function SiteMenuBar() {
               className="download-btn"
               href="#pricing"
             >
-              Get Started
+              Download
             </Button>
           </nav>
         </div>

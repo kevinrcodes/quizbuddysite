@@ -1,8 +1,8 @@
 .site-menu-bar {
-  background-color: rgb(24, 24, 27); /* zinc-900 */
-  border: 1px solid rgb(39, 39, 42); /* zinc-800 */
+  background-color: var(--color-background);
+  border: 1px solid var(--color-surface);
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
   padding: 0.75rem 0;
   margin: 1rem auto;
   max-width: 1150px;
@@ -19,6 +19,7 @@
 
 .site-menu-bar .navbar-brand {
   font-weight: 600;
+  color: var(--color-text-light);
 }
 
 /* Desktop Menu */
@@ -34,13 +35,13 @@
 }
 
 .desktop-menu a {
-  color: rgb(203, 203, 212);
+  color: var(--color-text);
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  transition: var(--transition-default);
 }
 
 .desktop-menu a:hover {
-  color: rgb(148, 79, 74);
+  color: var(--color-accent);
 }
 
 /* Mobile Menu */
@@ -62,9 +63,9 @@
   display: block;
   width: 24px;
   height: 2px;
-  background-color: white;
+  background-color: var(--color-text-light);
   margin: 5px 0;
-  transition: all 0.3s ease-in-out;
+  transition: var(--transition-default);
 }
 
 /* Hamburger Animation */
@@ -82,11 +83,11 @@
 
 /* Download Button */
 .download-btn {
-  background-color: rgb(148, 79, 74);
+  background-color: var(--color-accent);
   border: none;
   padding: 0.5rem 1.5rem;
-  transition: all 0.2s ease-in-out;
-  color: white !important;
+  transition: var(--transition-default);
+  color: var(--color-text-light) !important;
   font-weight: 500;
   text-align: center;
   display: flex;
@@ -98,17 +99,17 @@
 .download-btn:focus,
 .download-btn:active,
 .download-btn.active {
-  background-color: rgb(168, 99, 94) !important;
+  background-color: var(--color-accent-hover) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgba(148, 79, 74, 0.2);
-  color: white !important;
+  box-shadow: var(--shadow-md);
+  color: var(--color-text-light) !important;
   border: none !important;
   outline: none !important;
 }
 
 /* Remove Bootstrap's focus ring */
 .download-btn:focus {
-  box-shadow: 0 4px 6px -1px rgba(148, 79, 74, 0.2) !important;
+  box-shadow: var(--shadow-md) !important;
 }
 
 /* Mobile Styles */
@@ -126,16 +127,16 @@
     top: calc(100% + 0.5rem);
     left: 0;
     right: 0;
-    background-color: rgb(24, 24, 27);
+    background-color: var(--color-background);
     padding: 1rem;
     border-radius: 12px;
-    border: 1px solid rgb(39, 39, 42);
+    border: 1px solid var(--color-surface);
     display: block;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: var(--transition-default);
+    box-shadow: var(--shadow-lg);
     z-index: 1000;
   }
 
@@ -153,17 +154,17 @@
   }
 
   .mobile-menu a {
-    color: rgb(203, 203, 212);
+    color: var(--color-text);
     text-decoration: none;
     font-size: 1.1rem;
     padding: 0.5rem 0;
-    transition: color 0.2s ease-in-out;
+    transition: var(--transition-default);
     width: 100%;
     text-align: left;
   }
 
   .mobile-menu a:hover {
-    color: rgb(148, 79, 74);
+    color: var(--color-accent);
   }
 
   .mobile-menu .download-btn {
