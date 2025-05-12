@@ -1,7 +1,12 @@
 import { Container } from 'react-bootstrap'
 import SiteMenuBar from './components/SiteMenuBar'
 import Hero from './sections/Hero'
-import Features from './sections/Features'
+import FeaturesL from './sections/FeaturesL'
+import Demo from './sections/Demo'
+import Pricing from './sections/Pricing'
+import Questions from './sections/Questions'
+import CallToAction from './sections/CallToAction'
+import Footer from './sections/Footer'
 import './App.css'
 
 function App() {
@@ -11,32 +16,41 @@ function App() {
 
       {/* Add some padding to account for fixed navbar */}
       <div style={{ paddingTop: '56px' }}>
-        <Hero />
 
-        <Features />
+        {/* the multiple choice solver */}
+        <Hero /> 
 
-        <Container>
+        {/* invisible desktop app that aces any multiple choice exam */}
+        {/* super easy to use */}
+        {/* cmd h to take screenshot */}
+        <FeaturesL />
 
-          <section id="demo" className="py-5">
-            <h2>See It In Action</h2>
-            <p>Watch how our solution can help you</p>
-          </section>
+        {/* cmd enter for AI answers that don't suck */}
+        <Demo />
 
-          <section id="pricing" className="py-5">
-            <h2>Pricing Plans</h2>
-            <p>Choose the plan that works for you</p>
-          </section>
+        {/* how it is undetectable */}
+        {/* briefly explain browser vs OS space */}
+        {/* text section */}
 
-          <section id="faq" className="py-5">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions</p>
-          </section>
+        {/* high quality explanations, if you actually want to learn */}
+        {/* see why the other answers are wrong */}
+        {/* powered by the best GPT-4o whatever */}
+        {/* <FeaturesR /> */}
 
-          <section id="contact" className="py-5">
-            <h2>Get in Touch</h2>
-            <p>Have questions? We're here to help</p>
-          </section>
-        </Container>
+        {/* Used by students at... */}
+        {/* <SocialProof /> */}
+
+        {/* FAQ */}
+        <Questions />
+
+        {/* how to use */}
+        {/* <KeyTable /> */}
+
+        {/* call to action */}
+        <CallToAction />
+
+        <Footer />
+
       </div>
     </>
   )

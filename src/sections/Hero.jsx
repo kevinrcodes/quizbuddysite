@@ -25,7 +25,7 @@ function Hero() {
     <section id="hero" className={`py-5 ${styles.hero}`}>
       <Container>
         <div className={styles.content}>
-          <h1 className={styles.title}>
+          {/* <h1 className={styles.title}>
             Ace your{' '}
             <span className={styles.rotatingText}>
               {subjects.map((subject, index) => (
@@ -40,10 +40,11 @@ function Hero() {
               ))}
             </span>{' '}
             multiple choice
-          </h1>
-          <p className={styles.subtitle}>A powerful tool that solves your problem</p>
+          </h1> */}
+          <h1>The AI Quiz Solver</h1>
+          <p className={styles.subtitle}>Quiz Buddy is your best friend in a multiple choice exam. It's 2025, and you're still stressing over those dumb questions?</p>
           <div className={styles.cta}>
-            <button className={styles.primaryButton}>Download the app</button>
+            <button className={styles.primaryButton}>Download now - It's Free!</button>
           </div>
         </div>
 
