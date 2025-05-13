@@ -44,7 +44,7 @@ function Hero() {
           <h1>The AI Quiz Solver</h1>
           <p className={styles.subtitle}>Quiz Buddy is your best friend in a multiple choice exam. It's 2025, and you're still stressing over those dumb questions?</p>
           <div className={styles.cta}>
-            <button className={styles.primaryButton}>Download now - It's Free!</button>
+            <a href="#download" className={styles.primaryButton}>Download now - It's Free!</a>
           </div>
         </div>
 

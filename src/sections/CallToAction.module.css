@@ -1,0 +1,145 @@
+.cta {
+  padding: 6rem 0;
+  background-color: var(--color-background);
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.platforms {
+  display: flex;
+  gap: 0;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.platforms::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+}
+
+.platformCard {
+  width: 45%;
+  text-align: left;
+  transition: var(--transition-default);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.platformCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
+}
+
+.platformIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.platformIcon::after {
+  content: attr(data-os);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.platformCard h3 {
+  display: none;
+}
+
+.platformCard p {
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  text-align: left;
+  width: 100%;
+}
+
+.features li {
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+.downloadButton {
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-default);
+  width: 100%;
+  margin-top: auto;
+}
+
+.downloadButton:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 4rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .platforms {
+    flex-direction: column;
+  }
+
+  .platforms::after {
+    display: none;
+  }
+
+  .platformCard {
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+}

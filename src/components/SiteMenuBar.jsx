@@ -55,12 +55,12 @@ function SiteMenuBar() {
           <nav>
             <Button 
               className="download-btn"
-              href="#pricing"
+              href="#download"
             >
               Download
             </Button>
             <a href="#how-it-works">How It Works</a>
-            <a href="#pricing">Pricing</a>
+            <a href="#keybinds">How to Use</a>
             <a href="#help">Help</a>
           </nav>
         </div>
@@ -69,11 +69,11 @@ function SiteMenuBar() {
         <div className="desktop-menu">
           <nav>
             <a href="#how-it-works">How It Works</a>
-            <a href="#pricing">Pricing</a>
+            <a href="#keybinds">How to Use</a>
             <a href="#help">Help</a>
             <Button 
               className="download-btn"
-              href="#pricing"
+              href="#download"
             >
               Download
             </Button>

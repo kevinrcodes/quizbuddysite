@@ -1,0 +1,135 @@
+.footer {
+  background-color: var(--color-surface);
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.brand h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.brand p {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: end;
+  gap: 4rem;
+}
+
+.linkGroup {
+  text-align: right;
+}
+
+.linkGroup h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+}
+
+.linkGroup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linkGroup li {
+  margin-bottom: 0.75rem;
+}
+
+.linkGroup a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: var(--transition-default);
+}
+
+.linkGroup a:hover {
+  color: var(--color-accent);
+}
+
+.social h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: 1.5rem;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialIcons a {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  transition: var(--transition-default);
+}
+
+.socialIcons a:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.bottom p {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .links {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .linkGroup {
+    text-align: left;
+  }
+
+  .social {
+    text-align: center;
+  }
+
+  .socialIcons {
+    justify-content: center;
+  }
+}

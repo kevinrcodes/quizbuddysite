@@ -1,0 +1,152 @@
+.pricing {
+  padding: 6rem 0;
+  background-color: var(--color-background);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.plans {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 -1rem;
+}
+
+.planColumn {
+  padding: 0 1rem;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+.plan {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+  transition: var(--transition-default);
+  display: flex;
+  flex-direction: column;
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.popular {
+  border: 2px solid var(--color-accent);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.planHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.planHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+.period {
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  flex-grow: 1;
+}
+
+.features li {
+  color: var(--color-text);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.features li:last-child {
+  border-bottom: none;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-default);
+  margin-top: auto;
+}
+
+.button:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+.popularButton {
+  background-color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .plans {
+    flex-wrap: wrap;
+  }
+  
+  .planColumn {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .plan {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
