@@ -1,10 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { lazy, Suspense } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import SiteMenuBar from './components/SiteMenuBar'
 import Hero from './sections/Hero'
 import { FaShieldAlt, FaGraduationCap, FaRobot } from 'react-icons/fa'
 import './App.css'
 import Keybinds from './sections/Keybinds'
+import Payments from './pages/Payments'
 
 // Lazy load components that are below the fold
 const FeaturesL = lazy(() => import('./sections/FeaturesL'))
@@ -171,24 +173,28 @@ const LoadingFallback = () => (
 
 function App() {
   return (
-    <>
+    <Router>
       <SiteMenuBar />
-
-      <div style={{ paddingTop: '56px' }}>
-        <Hero />
-        <SocialProof />
-
-        <Suspense fallback={<LoadingFallback />}>
-          <FeaturesL />
-          <Demo />
-          <TextSection />
-          <Keybinds />
-          <Questions />
-          <CallToAction />
-          <Footer />
-        </Suspense>
-      </div>
-    </>
+      <Routes>
+        <Route path="/payments" element={<Payments />} />
+        <Route path="/" element={
+          <div style={{ paddingTop: '56px' }}>
+            <Hero />
+            <SocialProof />
+            <Suspense fallback={<LoadingFallback />}>
+              <FeaturesL />
+              <Demo />
+              <TextSection />
+              <Keybinds />
+              <Pricing />
+              <Questions />
+              <CallToAction />
+              <Footer />
+            </Suspense>
+          </div>
+        } />
+      </Routes>
+    </Router>
   )
 }
 

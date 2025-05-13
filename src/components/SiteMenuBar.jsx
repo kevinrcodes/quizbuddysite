@@ -33,7 +33,7 @@ function SiteMenuBar() {
   return (
     <Navbar className="site-menu-bar" expand="lg" fixed="top">
       <Container fluid>
-        <Navbar.Brand href="#hero" className="text-white">App Name</Navbar.Brand>
+        <Navbar.Brand href="#hero" className="text-white">Quiz Buddy</Navbar.Brand>
         
         {/* Custom Hamburger Button */}
         <button 

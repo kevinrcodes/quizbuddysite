@@ -1,7 +1,14 @@
 import { Container, Row, Col } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import styles from './Pricing.module.css'
 
 function Pricing() {
+  const navigate = useNavigate();
+
+  const handleSubscribe = (plan) => {
+    navigate('/payments', { state: { plan } });
+  };
+
   return (
     <section id="pricing" className={styles.pricing}>
       <Container>
@@ -26,7 +33,7 @@ function Pricing() {
                 <li>Community support</li>
                 <li>Basic subjects only</li>
               </ul>
-              <button className={styles.button}>Get Started</button>
+              <button className={styles.button}>Download</button>
             </div>
           </Col>
 
@@ -47,7 +54,12 @@ function Pricing() {
                 <li>All subjects</li>
                 <li>Study analytics</li>
               </ul>
-              <button className={`${styles.button} ${styles.popularButton}`}>Get Started</button>
+              <button 
+                className={`${styles.button} ${styles.popularButton}`}
+                onClick={() => handleSubscribe('getting-started')}
+              >
+                Subscribe
+              </button>
             </div>
           </Col>
 
@@ -68,7 +80,12 @@ function Pricing() {
                 <li>Advanced analytics</li>
                 <li>Custom study plans</li>
               </ul>
-              <button className={styles.button}>Get Started</button>
+              <button 
+                className={styles.button}
+                onClick={() => handleSubscribe('getting-serious')}
+              >
+                Subscribe
+              </button>
             </div>
           </Col>
         </Row>

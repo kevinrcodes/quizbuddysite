@@ -11,14 +11,41 @@
 .videoContainer {
   background-color: var(--color-surface);
   aspect-ratio: 2/1;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2rem;
+}
+
+.videoContainer::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle at center, rgba(248, 44, 30, 0.8) 0%, rgba(148, 79, 74, 0) 70%);
+  filter: blur(30px);
+  z-index: -1;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
 }
 
 .demoVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  box-shadow: var(--shadow-lg);
 }
 
 .content {
