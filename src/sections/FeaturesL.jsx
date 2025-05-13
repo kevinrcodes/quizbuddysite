@@ -10,7 +10,8 @@ function Features() {
     <section id="how-it-works" className={styles.features}>
       <Container>
         <Row className="align-items-center">
-          <Col lg={6} className={styles.imageContainer}>
+          <Col lg={6} className={styles.leftColumn}>
+            <h2 className={styles.title}>Multiple choice exams have never been easier</h2>
             <div className={styles.videoContainer}>
               <video
                 src={videoUrl}
@@ -18,13 +19,13 @@ function Features() {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
+                loading="lazy"
                 className={styles.demoVideo}
               />
             </div>
           </Col>
           <Col lg={6} className={styles.content}>
-            <h2 className={styles.title}>Multiple choice exams have never been easier</h2>
             <div className={styles.steps}>
               <div className={styles.step}>
                 <div className={styles.stepContent}>

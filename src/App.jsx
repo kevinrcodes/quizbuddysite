@@ -1,15 +1,18 @@
 import { Container, Row, Col } from 'react-bootstrap'
+import { lazy, Suspense } from 'react'
 import SiteMenuBar from './components/SiteMenuBar'
 import Hero from './sections/Hero'
-import FeaturesL from './sections/FeaturesL'
-import Demo from './sections/Demo'
-import Pricing from './sections/Pricing'
-import Questions from './sections/Questions'
-import CallToAction from './sections/CallToAction'
-import Footer from './sections/Footer'
 import { FaShieldAlt, FaGraduationCap, FaRobot } from 'react-icons/fa'
 import './App.css'
 import Keybinds from './sections/Keybinds'
+
+// Lazy load components that are below the fold
+const FeaturesL = lazy(() => import('./sections/FeaturesL'))
+const Demo = lazy(() => import('./sections/Demo'))
+const Pricing = lazy(() => import('./sections/Pricing'))
+const Questions = lazy(() => import('./sections/Questions'))
+const CallToAction = lazy(() => import('./sections/CallToAction'))
+const Footer = lazy(() => import('./sections/Footer'))
 
 function TextSection() {
   const sectionStyle = {
@@ -154,47 +157,36 @@ function SocialProof() {
   )
 }
 
+// Loading fallback component
+const LoadingFallback = () => (
+  <div style={{ 
+    height: '100vh', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center' 
+  }}>
+    Loading...
+  </div>
+)
+
 function App() {
   return (
     <>
       <SiteMenuBar />
 
-      {/* Add some padding to account for fixed navbar */}
       <div style={{ paddingTop: '56px' }}>
-
-        {/* the multiple choice solver */}
-        <Hero /> 
-
-        {/* invisible desktop app that aces any multiple choice exam */}
-        {/* super easy to use */}
-        {/* cmd h to take screenshot */}
-        <FeaturesL />
-
-        {/* cmd enter for AI answers that don't suck */}
-        <Demo />
-
-        {/* how it is undetectable */}
-        <TextSection />
-
-        {/* high quality explanations, if you actually want to learn */}
-        {/* see why the other answers are wrong */}
-        {/* powered by the best GPT-4o whatever */}
-        {/* <FeaturesR /> */}
-
-        {/* Used by students at... */}
+        <Hero />
         <SocialProof />
 
-        {/* how to use */}
-        <Keybinds />
-
-        {/* FAQ */}
-        <Questions />
-
-        {/* call to action */}
-        <CallToAction />
-
-        <Footer />
-
+        <Suspense fallback={<LoadingFallback />}>
+          <FeaturesL />
+          <Demo />
+          <TextSection />
+          <Keybinds />
+          <Questions />
+          <CallToAction />
+          <Footer />
+        </Suspense>
       </div>
     </>
   )

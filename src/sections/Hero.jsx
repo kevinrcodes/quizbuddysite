@@ -1,11 +1,14 @@
 import { Container } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
+import DotGrid from '../components/DotGrid'
 
 function Hero() {
   const subjects = ['reading', 'algebra', 'English', 'biology', 'physics', 'politics']
   const [currentIndex, setCurrentIndex] = useState(Math.floor(Math.random() * subjects.length))
   const [lastTwoIndices, setLastTwoIndices] = useState([-1, -1]) // Track last two indices
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const sectionRef = useRef(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,8 +24,24 @@ function Hero() {
     return () => clearInterval(interval)
   }, [currentIndex, lastTwoIndices])
 
+  const handleMouseMove = (e) => {
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect()
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      })
+    }
+  }
+
   return (
-    <section id="hero" className={`py-5 ${styles.hero}`}>
+    <section 
+      id="hero" 
+      className={`py-5 ${styles.hero}`}
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+    >
+      <DotGrid mouseX={mousePos.x} mouseY={mousePos.y} />
       <Container>
         <div className={styles.content}>
           {/* <h1 className={styles.title}>
