@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './Features.module.css'
+import { useVideoIntersection } from '../hooks/useVideoIntersection'
 
 function Features() {
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
   const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/v1/q7b7wpdytdr4hinpss0o`
+  const videoRef = useVideoIntersection();
 
   return (
     <section id="how-it-works" className={styles.features}>
@@ -14,8 +16,8 @@ function Features() {
             <h2 className={styles.title}>Multiple choice exams have never been easier</h2>
             <div className={styles.videoContainer}>
               <video
+                ref={videoRef}
                 src={videoUrl}
-                autoPlay
                 loop
                 muted
                 playsInline

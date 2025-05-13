@@ -1,10 +1,14 @@
 import { Container } from 'react-bootstrap'
 import styles from './Demo.module.css'
+import { useVideoIntersection } from '../hooks/useVideoIntersection'
 
 function Demo() {
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
   const yourPov = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/v1/r9cxhysycjetjvrocz0v`
   const proctorPov = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/v1/elkfxsyqpbanlvnapazs`
+  
+  const yourPovRef = useVideoIntersection();
+  const proctorPovRef = useVideoIntersection();
 
   return (
     <section id="demo" className={styles.demo}>
@@ -19,8 +23,8 @@ function Demo() {
             <div className={styles.videoContainer}>
               <h3 className={styles.videoTitle}>What you see</h3>
               <video 
+                ref={yourPovRef}
                 src={yourPov}
-                autoPlay 
                 loop 
                 muted 
                 playsInline
@@ -33,8 +37,8 @@ function Demo() {
             <div className={styles.videoContainer}>
               <h3 className={styles.videoTitle}>What the proctor sees</h3>
               <video 
+                ref={proctorPovRef}
                 src={proctorPov}
-                autoPlay 
                 loop 
                 muted 
                 playsInline
