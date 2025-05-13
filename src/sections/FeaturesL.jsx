@@ -1,15 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './Features.module.css'
 
 function Features() {
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+  const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_auto/v1/q7b7wpdytdr4hinpss0o`
+
   return (
     <section id="how-it-works" className={styles.features}>
       <Container>
         <Row className="align-items-center">
           <Col lg={6} className={styles.imageContainer}>
-            <div className={styles.placeholderImage}>
-              {/* show the app appearing, taking screenshot, solving a question, clickin the right answer */}
-              <div className={styles.imageText}>App Screenshot</div>
+            <div className={styles.videoContainer}>
+              <video
+                src={videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className={styles.demoVideo}
+              />
             </div>
           </Col>
           <Col lg={6} className={styles.content}>
