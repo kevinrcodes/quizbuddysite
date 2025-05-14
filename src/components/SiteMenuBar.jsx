@@ -105,9 +105,8 @@ function SiteMenuBar() {
               Download
             </Button>
             <Link to="/#how-it-works" onClick={closeMenu}>How It Works</Link>
-            <Link to="/#keybinds" onClick={closeMenu}>How to Use</Link>
-            <Link to="/#help" onClick={closeMenu}>Help</Link>
-            {renderAuthButtons()}
+            <Link to="/#keybinds" onClick={closeMenu}>Help</Link> // TODO fix these buttons
+            {/* {renderAuthButtons()} */}
           </nav>
         </div>
 
@@ -115,15 +114,14 @@ function SiteMenuBar() {
         <div className="desktop-menu">
           <nav>
             <Link to="/#how-it-works">How It Works</Link>
-            <Link to="/#keybinds">How to Use</Link>
-            <Link to="/#help">Help</Link>
+            <Link to="/#keybinds">Help</Link> 
             <Button 
               className="download-btn"
               href="#download"
             >
               Download
             </Button>
-            {renderAuthButtons()}
+            {/* {renderAuthButtons()} */}
           </nav>
         </div>
       </Container>
