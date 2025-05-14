@@ -51,7 +51,7 @@ function Demo() {
             multiple choice
           </h2>
           <p className={styles.subtitle}>
-            We'll automatically parse the question from your screen and provide you with the answer and explanation.
+            Get a detailed solution without ever leaving Canvas, or whatever other platform you're on.
           </p>
           
           <div className={styles.videosWrapper}>

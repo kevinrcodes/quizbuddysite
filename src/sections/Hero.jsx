@@ -8,6 +8,7 @@ function Hero() {
   const [currentIndex, setCurrentIndex] = useState(Math.floor(Math.random() * subjects.length))
   const [lastTwoIndices, setLastTwoIndices] = useState([-1, -1]) // Track last two indices
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [isButtonHovered, setIsButtonHovered] = useState(false)
   const sectionRef = useRef(null)
 
   useEffect(() => {
@@ -41,7 +42,11 @@ function Hero() {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
     >
-      <DotGrid mouseX={mousePos.x} mouseY={mousePos.y} />
+      <DotGrid 
+        mouseX={mousePos.x} 
+        mouseY={mousePos.y} 
+        isHighlighted={isButtonHovered} 
+      />
       <Container>
         <div className={styles.content}>
           {/* <h1 className={styles.title}>
@@ -63,7 +68,14 @@ function Hero() {
           <h1>The AI Quiz Solver</h1>
           <p className={styles.subtitle}>Quiz Buddy is your best friend in a multiple choice exam. It's 2025, and you're still stressing over those dumb questions?</p>
           <div className={styles.cta}>
-            <a href="#download" className={styles.primaryButton}>Download now - It's Free!</a>
+            <a 
+              href="#download" 
+              className={styles.primaryButton}
+              onMouseEnter={() => setIsButtonHovered(true)}
+              onMouseLeave={() => setIsButtonHovered(false)}
+            >
+              Download now - It's Free!
+            </a>
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 .hero {
-  min-height: 70vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   background-color: var(--color-background);
@@ -47,10 +47,21 @@
   min-width: 200px;
 }
 
-.primaryButton:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
+.primaryButton:hover,
+.primaryButton:focus,
+.primaryButton:active,
+.primaryButton.active {
+  background-color: var(--color-accent-hover) !important;
+  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
+  color: var(--color-text-light) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Remove focus ring and maintain consistent shadow */
+.primaryButton:focus {
+  box-shadow: var(--shadow-md) !important;
 }
 
 .secondaryButton {
@@ -98,7 +109,8 @@
 @media (max-width: 768px) {
   .hero {
     min-height: 60vh;
-    padding: 4rem 1.5rem;
+    padding: 6rem 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .content {
