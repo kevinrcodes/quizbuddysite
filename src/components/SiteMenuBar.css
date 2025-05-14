@@ -172,3 +172,17 @@
     width: 100%;
   }
 }
+
+
+@media (max-width: 991px) {
+  .auth-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  
+  .auth-link.signup {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}

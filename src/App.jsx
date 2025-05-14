@@ -1,12 +1,16 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { lazy, Suspense, useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import SiteMenuBar from './components/SiteMenuBar'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
 import Hero from './sections/Hero'
 import { FaShieldAlt, FaGraduationCap, FaRobot } from 'react-icons/fa'
 import './App.css'
 import Keybinds from './sections/Keybinds'
 import Payments from './pages/Payments'
+import paymentStyles from './pages/Payments.module.css'
+import LoginForm from './pages/LoginForm'
+import SignUpForm from './pages/SignUpForm'
 
 // Lazy load components that are below the fold
 const FeaturesL = lazy(() => import('./sections/FeaturesL'))
@@ -171,30 +175,103 @@ const LoadingFallback = () => (
   </div>
 )
 
+function SuccessPage() {
+  const navigate = useNavigate();
+  return (
+    <div className={paymentStyles.paymentsContainer}>
+      <h2>Payment Successful!</h2>
+      <p>Thank you for your subscription. You can now close this window and return to the main site.</p>
+      <button onClick={() => navigate('/')}>Return to Home</button>
+    </div>
+  );
+}
+
+function CancelPage() {
+  const navigate = useNavigate();
+  return (
+    <div className={paymentStyles.paymentsContainer}>
+      <h2>Payment Cancelled</h2>
+      <p>Your payment was cancelled. You can try again or return to the main site.</p>
+      <button onClick={() => navigate('/')}>Return to Home</button>
+    </div>
+  );
+}
+
+function AuthPage() {
+  const [showSignup, setShowSignup] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, setReturnTo } = useAuth();
+  const searchParams = new URLSearchParams(location.search);
+  const returnTo = searchParams.get('returnTo');
+
+  // Set return URL if provided
+  useEffect(() => {
+    if (returnTo) {
+      setReturnTo(returnTo);
+    }
+  }, [returnTo, setReturnTo]);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      const redirectUrl = returnTo || '/';
+      navigate(redirectUrl);
+    }
+  }, [user, navigate, returnTo]);
+
+  const handleShowSignup = () => {
+    setShowSignup(true);
+    navigate('/signup' + location.search);
+  };
+
+  const handleShowLogin = () => {
+    setShowSignup(false);
+    navigate('/login' + location.search);
+  };
+
+  // Set initial state based on URL
+  useEffect(() => {
+    setShowSignup(location.pathname === '/signup');
+  }, [location.pathname]);
+
+  return showSignup ? (
+    <SignUpForm onShowLogin={handleShowLogin} />
+  ) : (
+    <LoginForm onShowSignup={handleShowSignup} />
+  );
+}
+
 function App() {
   return (
-    <Router>
-      <SiteMenuBar />
-      <Routes>
-        <Route path="/payments" element={<Payments />} />
-        <Route path="/" element={
-          <div style={{ paddingTop: '56px' }}>
-            <Hero />
-            <SocialProof />
-            <Suspense fallback={<LoadingFallback />}>
-              <FeaturesL />
-              <Demo />
-              <TextSection />
-              <Keybinds />
-              <Pricing />
-              <Questions />
-              <CallToAction />
-              <Footer />
-            </Suspense>
-          </div>
-        } />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <SiteMenuBar />
+        <Routes>
+          <Route path="/payments" element={<Payments />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/signup" element={<AuthPage />} />
+          <Route path="/success" element={<SuccessPage />} />
+          <Route path="/cancel" element={<CancelPage />} />
+          <Route path="/" element={
+            <div style={{ paddingTop: '56px' }}>
+              <Hero />
+              <SocialProof />
+              <Suspense fallback={<LoadingFallback />}>
+                <FeaturesL />
+                <Demo />
+                <TextSection />
+                <Keybinds />
+                <Pricing />
+                <Questions />
+                <CallToAction />
+                <Footer />
+              </Suspense>
+            </div>
+          } />
+        </Routes>
+      </Router>
+    </AuthProvider>
   )
 }
 

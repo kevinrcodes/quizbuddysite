@@ -12,13 +12,13 @@ app.post('/api/create-checkout-session', async (req, res) => {
   try {
     const { plan } = req.body;
     // TODO: swap in your real price IDs
-    const priceId = plan === 'pro' ? 'price_ABC' : 'price_DEF';
+    const priceId = plan === 'pro' ? 'price_1ROPKxFagaBc91gZyJzN3Czi' : 'price_1ROPKxFagaBc91gZyJzN3Czi';
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       mode: 'subscription',
-      success_url: 'http://localhost:3000/success',
-      cancel_url:  'http://localhost:3000/cancel',
+      success_url: 'http://localhost:5173/success',
+      cancel_url:  'http://localhost:5173/cancel',
     });
     res.json({ id: session.id });
   } catch (err) {

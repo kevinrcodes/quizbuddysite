@@ -1,14 +1,36 @@
 import { useState, useEffect, useRef } from 'react'
 import { Navbar, Container, Button } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 import './SiteMenuBar.css'
 
 function SiteMenuBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef(null)
   const hamburgerRef = useRef(null)
+  const navigate = useNavigate()
+  const { user, signOut } = useAuth()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
+  const handleNavClick = (path) => {
+    closeMenu()
+    navigate(path)
+  }
+
+  const handleSignOut = async () => {
+    try {
+      await signOut()
+      navigate('/')
+    } catch (error) {
+      console.error('Error signing out:', error)
+    }
   }
 
   useEffect(() => {
@@ -20,7 +42,7 @@ function SiteMenuBar() {
         hamburgerRef.current &&
         !hamburgerRef.current.contains(event.target)
       ) {
-        setIsMenuOpen(false)
+        closeMenu()
       }
     }
 
@@ -30,10 +52,32 @@ function SiteMenuBar() {
     }
   }, [isMenuOpen])
 
+  const renderAuthButtons = () => {
+    if (user) {
+      return (
+        <>
+          <span className="auth-link">{user.email}</span>
+          <button 
+            className="auth-link signup"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </button>
+        </>
+      )
+    }
+    return (
+      <>
+        <Link to="/login" className="auth-link" onClick={closeMenu}>Sign In</Link>
+        <Link to="/signup" className="auth-link signup" onClick={closeMenu}>Sign Up</Link>
+      </>
+    )
+  }
+
   return (
     <Navbar className="site-menu-bar" expand="lg" fixed="top">
       <Container fluid>
-        <Navbar.Brand href="#hero" className="text-white">Quiz Buddy</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/" className="text-white" onClick={closeMenu}>Quiz Buddy</Navbar.Brand>
         
         {/* Custom Hamburger Button */}
         <button 
@@ -56,27 +100,30 @@ function SiteMenuBar() {
             <Button 
               className="download-btn"
               href="#download"
+              onClick={closeMenu}
             >
               Download
             </Button>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#keybinds">How to Use</a>
-            <a href="#help">Help</a>
+            <Link to="/#how-it-works" onClick={closeMenu}>How It Works</Link>
+            <Link to="/#keybinds" onClick={closeMenu}>How to Use</Link>
+            <Link to="/#help" onClick={closeMenu}>Help</Link>
+            {renderAuthButtons()}
           </nav>
         </div>
 
         {/* Desktop Menu */}
         <div className="desktop-menu">
           <nav>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#keybinds">How to Use</a>
-            <a href="#help">Help</a>
+            <Link to="/#how-it-works">How It Works</Link>
+            <Link to="/#keybinds">How to Use</Link>
+            <Link to="/#help">Help</Link>
             <Button 
               className="download-btn"
               href="#download"
             >
               Download
             </Button>
+            {renderAuthButtons()}
           </nav>
         </div>
       </Container>

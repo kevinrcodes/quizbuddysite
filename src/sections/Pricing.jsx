@@ -1,12 +1,23 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 import styles from './Pricing.module.css'
 
 function Pricing() {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleSubscribe = (plan) => {
-    navigate('/payments', { state: { plan } });
+    if (!user) {
+      // If not authenticated, redirect to signup with return URL
+      const returnUrl = `/payments?plan=${plan}`;
+      navigate(`/signup?returnTo=${encodeURIComponent(returnUrl)}`);
+      return;
+    }
+
+    // If authenticated, proceed to payment
+    const url = `/payments?plan=${plan}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
