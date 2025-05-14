@@ -5,12 +5,12 @@ const GRID_SPACING = 20;
 const DOT_RADIUS = 1;
 const DARK_GRAY = 'rgb(52, 52, 52)';
 const ACCENT_COLOR = 'rgb(255, 50, 50)';
-const MAX_DISTANCE = 150;
+const MAX_DISTANCE = 250;
 const MAX_BRIGHTNESS = 1;
 const MIN_BRIGHTNESS = 0.2;
-const LERP_FACTOR = 0.1; // Reduced for more direct movement
+const LERP_FACTOR = 0.03;
 const TRAIL_LENGTH = 10;
-const TRAIL_FADE = 0.15; // Reduced for longer-lasting trail
+const TRAIL_FADE = 0.15;
 const TRAIL_UPDATE_INTERVAL = 2; // Update trail every 2 frames
 
 // Helper function to interpolate between two RGB colors
