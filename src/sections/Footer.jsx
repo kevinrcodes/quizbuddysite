@@ -8,8 +8,9 @@ function Footer() {
       <Container>
         <div className={styles.content}>
           <div className={styles.brand}>
-            <h3>AppName</h3>
-            <p>Your AI-powered learning companion</p>
+            <h3>Quiz Buddy</h3>
+            <p>The AI Quiz Solver</p>
+            <p>An invisible desktop app to ace any multiple choice quiz</p>
           </div>
 
           <div className={styles.links}>
@@ -36,7 +37,7 @@ function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} AppName. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Quiz Buddy. All rights reserved.</p>
         </div>
       </Container>
     </footer>

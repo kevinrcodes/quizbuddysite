@@ -12,7 +12,7 @@ function Questions() {
     },
     {
       question: "What subjects does it support?",
-      answer: "Quiz Buddy is powered by the most advanced AI models, so it supports the majority of subjects you'll see. Anything that's not obscure or extremely new."
+      answer: "Quiz Buddy is powered by the most advanced AI models, so it supports the majority of subjects you'll see. Anything that's not extremely obscure."
     },
     {
       question: "What languages does it support?",
@@ -20,7 +20,7 @@ function Questions() {
     },
     {
       question: "How accurate are the answers?",
-      answer: "Quiz Buddy is designed to be careful and handle tricky questions with confidence. No system is perfect, but the accuracy is near perfect and always improving!"
+      answer: "Quiz Buddy is designed to be careful and handle tricky questions with confidence. No system is perfect, but the accuracy is backed by 4.0 GPAs and always improving!"
     },
     {
       question: "Do I get an account?",

@@ -13,7 +13,7 @@ const TRAIL_LENGTH = 10;
 const TRAIL_FADE = 0.15;
 const TRAIL_UPDATE_INTERVAL = 2; // Update trail every 2 frames
 
-// Helper function to interpolate between two RGB colors
+// Memoize color interpolation function
 const interpolateColor = (color1, color2, factor) => {
   const r1 = parseInt(color1.slice(4, -1).split(',')[0]);
   const g1 = parseInt(color1.slice(4, -1).split(',')[1]);
@@ -30,7 +30,7 @@ const interpolateColor = (color1, color2, factor) => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-function DotGrid({ mouseX, mouseY }) {
+function DotGrid({ mouseX, mouseY, isHighlighted }) {
   const canvasRef = useRef(null);
   const currentPos = useRef({ x: 0, y: 0 });
   const trailPositions = useRef([]);
@@ -38,6 +38,7 @@ function DotGrid({ mouseX, mouseY }) {
   const animationFrameId = useRef(null);
   const resizeTimeout = useRef(null);
   const gridRef = useRef(null);
+  const transitionRef = useRef(0);
 
   // Memoize grid calculation
   const calculateGrid = useCallback((width, height) => {
@@ -70,41 +71,15 @@ function DotGrid({ mouseX, mouseY }) {
     return brightness;
   }, []);
 
-  // Memoize resize handler
-  const handleResize = useCallback(() => {
-    if (resizeTimeout.current) {
-      clearTimeout(resizeTimeout.current);
-    }
-    resizeTimeout.current = setTimeout(() => {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const rect = canvas.parentElement.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-        gridRef.current = calculateGrid(rect.width, rect.height);
-        drawDots(gridRef.current);
-      }
-    }, 100);
-  }, [calculateGrid]);
+  // Linear interpolation function
+  const lerp = (start, end, factor) => {
+    return start + (end - start) * factor;
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    
-    // Linear interpolation function
-    const lerp = (start, end, factor) => {
-      return start + (end - start) * factor;
-    };
 
-    // Set canvas size to match container
-    const resizeCanvas = () => {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      gridRef.current = calculateGrid(rect.width, rect.height);
-    };
-
-    // Draw all dots with lighting effect
     const drawDots = (grid) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -112,9 +87,16 @@ function DotGrid({ mouseX, mouseY }) {
       currentPos.current.x = lerp(currentPos.current.x, mouseX, LERP_FACTOR);
       currentPos.current.y = lerp(currentPos.current.y, mouseY, LERP_FACTOR);
 
+      // Smoothly transition the highlight effect
+      if (isHighlighted && transitionRef.current < 1) {
+        transitionRef.current = Math.min(1, transitionRef.current + 0.05);
+      } else if (!isHighlighted && transitionRef.current > 0) {
+        transitionRef.current = Math.max(0, transitionRef.current - 0.05);
+      }
+
       // Update trail positions less frequently
       frameCount.current++;
-      if (frameCount.current % TRAIL_UPDATE_INTERVAL === 0) {
+      if (frameCount.current % TRAIL_UPDATE_INTERVAL === 0 && !isHighlighted) {
         const lastPos = trailPositions.current[0];
         const distance = lastPos ? 
           Math.sqrt(
@@ -133,18 +115,25 @@ function DotGrid({ mouseX, mouseY }) {
         }
       }
 
-      // Draw dots for each position in the trail
+      // Draw dots
       grid.forEach(row => {
         row.forEach(dot => {
-          let maxBrightness = 0;
+          let color;
           
-          trailPositions.current.forEach((pos, index) => {
-            const intensity = Math.pow(1 - TRAIL_FADE, index);
-            const brightness = calculateBrightness(dot.x, dot.y, pos.x, pos.y, intensity);
-            maxBrightness = Math.max(maxBrightness, brightness);
-          });
+          if (isHighlighted) {
+            // Smoothly transition to accent color when highlighted
+            color = interpolateColor(DARK_GRAY, ACCENT_COLOR, transitionRef.current);
+          } else {
+            let maxBrightness = 0;
+            
+            trailPositions.current.forEach((pos, index) => {
+              const intensity = Math.pow(1 - TRAIL_FADE, index);
+              const brightness = calculateBrightness(dot.x, dot.y, pos.x, pos.y, intensity);
+              maxBrightness = Math.max(maxBrightness, brightness);
+            });
 
-          const color = maxBrightness === 0 ? DARK_GRAY : interpolateColor(DARK_GRAY, ACCENT_COLOR, maxBrightness);
+            color = maxBrightness === 0 ? DARK_GRAY : interpolateColor(DARK_GRAY, ACCENT_COLOR, maxBrightness);
+          }
           
           ctx.beginPath();
           ctx.fillStyle = color;
@@ -156,11 +145,25 @@ function DotGrid({ mouseX, mouseY }) {
       animationFrameId.current = requestAnimationFrame(() => drawDots(grid));
     };
 
+    const handleResize = () => {
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+      resizeTimeout.current = setTimeout(() => {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        gridRef.current = calculateGrid(rect.width, rect.height);
+      }, 100);
+    };
+
     // Initial setup
-    resizeCanvas();
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    gridRef.current = calculateGrid(rect.width, rect.height);
     drawDots(gridRef.current);
 
-    // Handle window resize with debouncing
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -172,7 +175,7 @@ function DotGrid({ mouseX, mouseY }) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [mouseX, mouseY, handleResize, calculateBrightness]);
+  }, [mouseX, mouseY, isHighlighted, calculateGrid, calculateBrightness]);
 
   return (
     <div className={styles.container}>

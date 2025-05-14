@@ -112,6 +112,27 @@
   box-shadow: var(--shadow-md) !important;
 }
 
+/* Nav Links */
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: var(--transition-default);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.nav-link:focus {
+  outline: none;
+}
+
 /* Mobile Styles */
 @media (max-width: 992px) {
   .desktop-menu {
@@ -171,8 +192,18 @@
     margin-top: 0.5rem;
     width: 100%;
   }
-}
 
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-link:hover {
+    background-color: var(--color-surface);
+    color: var(--color-accent);
+  }
+}
 
 @media (max-width: 991px) {
   .auth-link {
