@@ -11,7 +11,7 @@ export const authService = {
   },
 
   async signUp(email, password) {
-    // First check if user exists
+    // First check if user exists 
     const { data: existingUser } = await supabase.auth.signInWithPassword({
       email,
       password,
