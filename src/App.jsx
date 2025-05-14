@@ -131,12 +131,12 @@ function SocialProof() {
   }
 
   const universities = [
-    { name: 'Alabama', logo: '/src/assets/alabamalogo.png' },
-    { name: 'Columbia', logo: '/src/assets/columbialogo.png' },
-    { name: 'Cornell', logo: '/src/assets/cornelllogo.png' },
-    { name: 'UC Berkeley', logo: '/src/assets/berkeleylogo.svg' },
-    { name: 'Michigan', logo: '/src/assets/michlogo.png' },
-    { name: 'UW Seattle', logo: '/src/assets/washingtonlogo.png' }
+    { name: 'Alabama', logo: '/assets/alabamalogo.png' },
+    { name: 'Columbia', logo: '/assets/columbialogo.png' },
+    { name: 'Cornell', logo: '/assets/cornelllogo.png' },
+    { name: 'UC Berkeley', logo: '/assets/berkeleylogo.svg' },
+    { name: 'Michigan', logo: '/assets/michlogo.png' },
+    { name: 'UW Seattle', logo: '/assets/washingtonlogo.png' }
   ]
 
   return (
