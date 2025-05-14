@@ -262,7 +262,6 @@ function App() {
                 <Demo />
                 <TextSection />
                 <Keybinds />
-                <Pricing />
                 <Questions />
                 <CallToAction />
                 <Footer />
