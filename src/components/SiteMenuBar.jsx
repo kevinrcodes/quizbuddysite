@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Navbar, Container, Button } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import './SiteMenuBar.css'
 
@@ -9,7 +9,30 @@ function SiteMenuBar() {
   const menuRef = useRef(null)
   const hamburgerRef = useRef(null)
   const navigate = useNavigate()
+  const location = useLocation()
   const { user, signOut } = useAuth()
+
+  const scrollToSection = (sectionId) => {
+    closeMenu()
+    
+    // If we're not on the homepage, navigate there first
+    if (location.pathname !== '/') {
+      navigate('/')
+      // Wait for navigation to complete before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    } else {
+      // If we're already on homepage, just scroll
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -99,27 +122,44 @@ function SiteMenuBar() {
           <nav>
             <Button 
               className="download-btn"
-              href="#download"
-              onClick={closeMenu}
+              onClick={() => scrollToSection('download')}
             >
               Download
             </Button>
-            <Link to="/#how-it-works" onClick={closeMenu}>How It Works</Link>
-            <Link to="/#keybinds" onClick={closeMenu}>How to Use</Link>
-            <Link to="/#help" onClick={closeMenu}>Help</Link>
-            {renderAuthButtons()}
+            <button 
+              className="nav-link"
+              onClick={() => scrollToSection('how-it-works')}
+            >
+              How It Works
+            </button>
+            <button 
+              className="nav-link"
+              onClick={() => scrollToSection('keybinds')}
+            >
+              Help
+            </button>
+            {/* {renderAuthButtons()} */}
           </nav>
         </div>
 
         {/* Desktop Menu */}
         <div className="desktop-menu">
           <nav>
-            <Link to="/#how-it-works">How It Works</Link>
-            <Link to="/#keybinds">How to Use</Link>
-            <Link to="/#help">Help</Link>
+            <button 
+              className="nav-link"
+              onClick={() => scrollToSection('how-it-works')}
+            >
+              How It Works
+            </button>
+            <button 
+              className="nav-link"
+              onClick={() => scrollToSection('keybinds')}
+            >
+              Help
+            </button>
             <Button 
               className="download-btn"
-              href="#download"
+              onClick={() => scrollToSection('download')}
             >
               Download
             </Button>

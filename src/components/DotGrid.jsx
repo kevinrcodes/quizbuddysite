@@ -3,8 +3,8 @@ import styles from './DotGrid.module.css';
 
 const GRID_SPACING = 20;
 const DOT_RADIUS = 1;
-const DARK_GRAY = 'rgb(52, 52, 52)';
-const ACCENT_COLOR = 'rgb(255, 50, 50)';
+const DARK_GRAY = 'rgb(72, 72, 72)';
+const ACCENT_COLOR = 'rgb(255, 86, 86)';
 const MAX_DISTANCE = 250;
 const MAX_BRIGHTNESS = 1;
 const MIN_BRIGHTNESS = 0.2;
