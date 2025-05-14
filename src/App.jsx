@@ -11,6 +11,7 @@ import Payments from './pages/Payments'
 import paymentStyles from './pages/Payments.module.css'
 import LoginForm from './pages/LoginForm'
 import SignUpForm from './pages/SignUpForm'
+import HowTo from './sections/HowTo'
 
 // Lazy load components that are below the fold
 const FeaturesL = lazy(() => import('./sections/FeaturesL'))
@@ -261,6 +262,7 @@ function App() {
                 <FeaturesL />
                 <Demo />
                 <TextSection />
+                <HowTo />
                 <Keybinds />
                 <Questions />
                 <CallToAction />
