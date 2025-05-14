@@ -4,7 +4,7 @@ import { FaApple, FaWindows } from 'react-icons/fa'
 
 // Download URLs - replace these with your actual download URLs
 const DOWNLOAD_URLS = {
-  mac: 'https://your-domain.com/downloads/quiz-buddy-mac.dmg',
+  mac: 'https://github.com/kevinrcodes/quizbuddy/releases/download/v1.0.19/Quiz-Buddy-x64.dmg',
   windows: 'https://your-domain.com/downloads/quiz-buddy-windows.exe'
 };
 
