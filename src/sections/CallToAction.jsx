@@ -14,6 +14,7 @@ function CallToAction() {
       <Container>
         <div className={styles.header}>
           <h2 className={styles.title}>Ace that quiz in two clicks, not two weeks</h2>
+          <h3>APP CURRENTLY DOES NOT WORK PLEASE CHECK AGAIN LATER</h3>
         </div>
 
         <div className={styles.platforms}>

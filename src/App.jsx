@@ -264,6 +264,7 @@ function App() {
                 <TextSection />
                 <HowTo />
                 <Keybinds />
+                <Pricing />
                 <Questions />
                 <CallToAction />
                 <Footer />
