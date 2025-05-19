@@ -12,6 +12,7 @@ import paymentStyles from './pages/Payments.module.css'
 import LoginForm from './pages/LoginForm'
 import SignUpForm from './pages/SignUpForm'
 import HowTo from './sections/HowTo'
+import Confirmed from './pages/Confirmed'
 
 // Lazy load components that are below the fold
 const FeaturesL = lazy(() => import('./sections/FeaturesL'))
@@ -254,6 +255,7 @@ function App() {
           <Route path="/signup" element={<AuthPage />} />
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/cancel" element={<CancelPage />} />
+          <Route path="/confirmed" element={<Confirmed />} />
           <Route path="/" element={
             <div style={{ paddingTop: '56px' }}>
               <Hero />
