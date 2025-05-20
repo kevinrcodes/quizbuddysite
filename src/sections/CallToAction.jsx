@@ -2,10 +2,9 @@ import { Container } from 'react-bootstrap'
 import styles from './CallToAction.module.css'
 import { FaApple, FaWindows } from 'react-icons/fa'
 
-// Download URLs - replace these with your actual download URLs
 const DOWNLOAD_URLS = {
   mac: 'https://github.com/kevinrcodes/quizbuddy/releases/download/v1.0.19/Quiz-Buddy-x64.dmg',
-  windows: 'https://your-domain.com/downloads/quiz-buddy-windows.exe'
+  windows: 'https://github.com/kevinrcodes/quizbuddyrelease/releases/download/v0.0.1-alpha/Quiz-Buddy-arm64.dmg'
 };
 
 function CallToAction() {
